@@ -1,15 +1,16 @@
 <?php
 session_start();
+include 'scripts.php';
 $title = "Dashboard";
-
 include 'head.php';
 // if($_SESSION["sucess"]!="oui"){
 // header('location:Signin.php');
 // }else{
 //     echo "WELCOM".$_SESSION["Username"];
 // }
-
 ?>
+
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -70,28 +71,44 @@ include 'head.php';
                 </a>
             </div>
             <div class="table-responsive mx-2 mt-5 d-flex justify-content-center ">
-            <table class="table">
-                        <thead class="table-dark">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Picture</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light ">
+                        <?php
+                        $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp";
+                        $result = mysqli_query($Connexion, $sql);
+                        while ($ligne = mysqli_fetch_assoc($result)) {
+                        ?>
                             <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Picture</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Description</th>
+                                <th scope="row"><?php echo $ligne["Title"] ?></th>
+                                <td><?php echo $ligne["namep"] ?></td>
+                                <td><?php echo '<img src="img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
+                                <td><?php echo $ligne["Price"] ?></td>
+                                <td><?php echo $ligne["Amount"] ?></td>
+                                <td><?php echo $ligne["Description"] ?></td>
+                                <form action="" method="post">
+                                    <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
+                                    <td><i type="submit" class="fa-solid fa-file-pen text-success" name="edit"></i></td>
+                                </form>
+                                <form action="" method="post">
+                                    <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
+                                    <td><i type="submit" class="fa-solid fa-trash-can text-danger" name="delete"></i></td>
+                                </form>
                             </tr>
-                        </thead>
-                        <tbody class="table-light ">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                        </tbody> 
-            </table>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -103,7 +120,7 @@ include 'head.php';
     <div class="modal" tabindex="-1" id="modal-form">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form  method="POST" id="form-product">
+                <form action="scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Game</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
@@ -112,12 +129,12 @@ include 'head.php';
                         <!-- This Input Allows Storing Task Index  -->
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input name="title" type="text" class="form-control" id="task-title" />
+                            <input name="title" type="text" class="form-control" id="product-title" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Type</label>
-                            <select name="select1" class="form-select">
+                            <select name="selectproduct" class="form-control" id="product-type">
                                 <option value="">Please select</option>
                                 <option value="1">Jeux vidéo</option>
                                 <option value="2">Pc gamer</option>
@@ -126,19 +143,19 @@ include 'head.php';
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Picture</label>
-                            <input name="file" type="file" accept=".jpg, .png" class="form-control">
+                            <input name="image" type="file" accept=".jpg, .png" class="form-control" id="product-file">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input name="date" type="number" class="form-control">
+                            <input name="price" type="number" class="form-control" id="product-price">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Amount</label>
-                            <input name="date" type="number" class="form-control">
+                            <input name="amount" type="number" class="form-control" id="product-amount">
                         </div>
                         <div class="mb-0">
                             <label class="form-label">Description</label>
-                            <textarea name="description" class="form-control" rows="5"></textarea>
+                            <textarea name="description" class="form-control" rows="5" id="product-description"></textarea>
                         </div>
 
                     </div>
@@ -151,11 +168,7 @@ include 'head.php';
         </div>
     </div>
     <script src="dashboard.js">
-
     </script>
 </body>
 
 </html>
-<?php
-// session_destroy();
-?>

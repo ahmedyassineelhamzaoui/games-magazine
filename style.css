@@ -1,0 +1,464 @@
+body{
+  padding:0;
+  margin:0;
+
+}
+.container{
+    width:90%;
+    margin-left:5%;
+}
+/*++++++++++++++++++++++++++++++++++++ begin header home +++++++++++++++++++++++++++++++++++++*/
+header .nav-home{
+   position: relative;
+   display:flex;
+   justify-content: space-between;
+   align-items:center;
+}
+
+a{
+    text-decoration:none ;
+    color:black
+}
+header .nav-home li{
+    list-style: none;
+}
+header #home-label-checkbox::before{
+    content:'\f0c9';
+    position: absolute;
+    font-family: fontawesome;
+    width:40px;
+    height:40px;
+    
+}
+header #home-label-close{
+    display:none;
+}
+header #home-label-close::before{
+    content:'\f410';
+    position: absolute;
+    font-family: fontawesome;
+    width:40px;
+    height:40px;
+    top:0;
+    right:0;
+}
+header #home-label-checkbox{
+    display:none;
+    cursor: pointer;
+}
+header #home_checkbox{
+    display: none;
+ }
+header .nav-home .nav-home-ul{
+    display:flex;
+    align-items: center;
+}
+header .nav-home .home-logo{
+    font-size: 2em;
+    color:gray;
+}
+header .nav-home .home-span-logo{
+    color:blue;
+}
+header .nav-home .Sign-up-home{
+    margin-left: 1.5em;
+    color:white;
+    background-color:#BFA479;
+    padding: .5em 1em .5em 1em;
+    border-radius: .2em;
+}
+header .nav-home .Sign-in-home{
+    margin-left: 1.5em;
+    color:white;
+    background-color:#BFA479;
+    padding: .5em 1em .5em 1em;
+    border-radius: .2em;
+}
+header .nav-home .Sign-up-home:hover{
+    background-color:#88898D;
+    color:#04A0C2;
+}
+header .nav-home .Sign-in-home:hover{
+    background-color:#88898D;
+    color:#04A0C2;
+}
+header .home-login-img{
+    display:none;
+    height:15em;
+    width:10em;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++ end header ++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++ begin main home++++++++++++++++++++++++++++++++++++ */
+.main-home .ractangle-box{
+    font-family:serif;
+    margin-top:1em;
+    /* background:linear-gradient(rgba(250, 178, 255, 1),rgba(25, 4, 229, 1)); */
+    background-image: url('pictures/backgame.jpg');
+    background-size: cover;
+    height:80vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns:1.5fr 1fr ;
+    border-radius: 1em;
+}
+.main-home .ractangle-box .text-box {
+   color:rgb(204, 194, 0);
+   padding:3em 5em ;
+}
+/* .main-home .ractangle-box .text-box .title-span-box{
+    color:rgb(204, 194, 0);
+} */
+.main-home .ractangle-box .text-box .description-box{
+    color:azure;
+    font-size: 1em;
+}
+.main-home .ractangle-box .text-box .button-box{
+    line-height:4em;
+    color:#fff8ec;
+    font-weight: bold;
+    background-color:#BFA479;
+    padding: .5em 1em .5em 1em;
+    border-radius: .2em;
+ }
+ .main-home .ractangle-box .text-box .button-box:hover{
+    background:#88898D;
+ }
+.main-home .ractangle-box .picture-box .picture-content-box{
+    width:70%;
+    height:80%;
+    margin-top: 10%;
+    margin-left: 10%;
+    border-radius:1em 1em 6em 1em;
+ }
+ @media (max-width:853px){
+    .main-home .ractangle-box{
+        grid-template-rows: 1fr;
+        grid-template-columns:1fr ;
+        height:100%;
+    }
+    .main-home .ractangle-box .picture-box .picture-content-box{
+        display:none;
+    }
+    header #home-label-checkbox{
+        display:block;
+    }
+    header #home_checkbox:checked ~ .nav-home-ul{
+        left:0%;
+    }
+    header .home-login-img{
+        display:block;
+    }
+    header .nav-home-ul{
+        position: absolute;
+        justify-content: space-evenly;
+        text-align:left;
+        background-color: rgb(255, 255, 255);
+        top:45%;
+        left: -200%;
+        height:40vh;
+        width:95%;
+        transition: .5s;
+    }
+    header .nav-home-ul .Sign-in-home{
+       margin-bottom: 3em;
+    }
+
+ }
+ /* ++++++++++++++++++++++++++++++++++++++++++ end main home ++++++++++++++++++++++++++++++++++++ */
+ /* ++++++++++++++++++++++++++++++++++++++++++ start signin page ++++++++++++++++++++++++++++++++++++ */
+ .main-signin{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    height:100vh;
+    text-align: center;
+
+ }
+ .main-signin .erreur-signin{
+   color:red;
+ }
+.picture-signin-ware{
+    width:60vw;
+    height:100vh;
+    filter: hue-rotate(70deg);
+}
+ .main-signin .section-signin-content{
+   display:flex;
+   justify-content: center;
+ }
+  .input-feld{
+    background-color: #cfcfcf;
+    width:20em;
+    height:2.6em;
+
+    margin-bottom: 1em;
+    border:2em;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    border-radius: 2em;
+    text-align: center;
+    
+}
+ .input-feld i{
+    line-height: 2.7em;
+    color:gray;
+}
+ .content-input{
+   outline:none;
+   border:none;
+   background:none;
+   font-weight: bold;
+}
+.section-signin-style a{
+    color:white;
+}
+.section-submit{
+    width:10em;
+    height:2.6em;
+    border-radius: 5em;
+    border:1px solid blue;
+    outline:none;
+    background-color: #5995fd;
+    color:white;
+    text-transform: uppercase;
+    cursor:pointer;
+    transition:.5s;
+}
+.section-submit:hover{
+    background-color: #4d84e2;
+}
+.main-signin .section-signin-content .content-form .signin-avatar{
+   width:9em;
+   height: 9em;
+}
+.section-signin-style .section-signin-style-content{
+   position: absolute;
+   top:5em;
+   left:7em;
+}
+
+.section-signin-content .section-signin-style-content{
+    display: none;
+}
+.section-signin-style .picture-signin-undraw{
+    height: 15em;
+    position: absolute;
+    top:18em;
+    left:10em;
+}
+ .home-icon{
+  position:absolute;
+  top:2%;
+  left:2%;
+  font-size:1.3em;
+  color:rgb(11, 51, 131) !important;
+  transition: .5s;
+}
+.home-icon:hover{
+    color:rgb(56, 72, 72)  !important;
+}
+@media (max-width:805px){
+    .section-signin-style .picture-signin-undraw{
+        display: none;
+    }
+    .picture-signin-ware{
+        display: none;
+    }
+    .main-signin {
+        display:flex;
+        justify-content: center;
+    }
+    .section-signin-style .section-signin-style-content{
+        display: none;
+     }
+     .section-signin-content{
+        display: flex;
+        flex-direction: column;
+     }
+     .section-signin-content .section-signin-style-content{
+        display: block;
+    }
+    
+}
+ /* ++++++++++++++++++++++++++++++++++++++++++ start signin page ++++++++++++++++++++++++++++++++++++ */
+ /* ++++++++++++++++++++++++++++++++++++++++++ start signup page ++++++++++++++++++++++++++++++++++++ */
+ 
+ .main-signup{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    height:100vh;
+    text-align: center;
+ }
+ .main-signup .erreur{
+    color:red;
+}
+ .picture-signup-ware{
+    width:60vw;
+    height:100vh;
+    filter: hue-rotate(70deg);
+}
+.main-signup .section-signup-content{
+    display:flex;
+    justify-content: center;
+  }
+.main-signup .content-form .content-input-select{
+    width:90%;
+    color:rgb(93, 92, 92);
+    border:none;
+}
+.main-signup .content-form .input-checkbox{
+    text-align: left;
+    margin-bottom: 2em;
+}
+.main-signup .section-signup-content .content-form .signup-avatar{
+    width:12em;
+    height: 12em;
+    margin-top: -45px;
+ }
+ .section-signup-style .section-signup-style-content{
+    position: absolute;
+    top:14em;
+    left:75%;
+ }
+ .section-signup-content .section-signup-style-content{
+     display: none;
+ }
+ .section-signup-style .picture-undraw-signup{
+     height: 15em;
+     position: absolute;
+     top:18em;
+     left:50%;
+ }
+ @media (max-width:805px){
+    .section-signup-style .picture-undraw-signup{
+        display: none;
+    }
+    .picture-signup-ware{
+        display: none;
+    }
+    .main-signup {
+        display:flex;
+        justify-content: center;
+    }
+    .section-signup-style .section-signup-style-content{
+        display: none;
+     }
+     .section-signup-content{
+        margin-top: 100px;
+     }
+     .section-signup-content .section-signup-style-content{
+        display: block;
+    }
+}
+ 
+ /* ++++++++++++++++++++++++++++++++++++++++++ end signup page ++++++++++++++++++++++++++++++++++++ */
+ /* ++++++++++++++++++++++++++++++++++++++++++ start dashboard page ++++++++++++++++++++++++++++++++++++ */
+ .dashboard{
+    background-color: #e2e0e0;
+ }
+ .main-dashboard .sidebar-dashboard{
+    position:fixed;
+    background-color: rgb(255, 255, 255);
+    width:240px;
+    height:100vh;
+    transition:.5s;
+    display:block;
+  }
+  .main-dashboard .sidebar-dashboard .dashboard-logo{
+     height:12em;
+     background-image: url('pictures/cover2.jpg');
+     background-size: cover;
+     position: relative;
+   }
+   .main-dashboard .sidebar-dashboard .dashboard-logo i{
+     position: absolute;
+     top:3%;
+     color:white;
+     cursor:pointer;
+     right:2%;
+     font-size:20px;
+   }
+   .main-dashboard .sidebar-dashboard .dashboard-logo #double-right{
+     display: none;
+   }
+   .main-dashboard .sidebar-dashboard .dashboard-logo .user-dashboard{
+     position:absolute;
+     left:50%;
+     top:50%;
+     transform: translate(-50%,-50%);
+     width:60px;
+     height:60px;
+     border-radius: 50%;
+   }
+   .dashboard-list{
+    flex-direction: column;
+   }
+   .sidebar-dashboard a{
+    text-decoration: none;
+    color:gray;
+   }
+   .sidebar-dashboard a:hover{
+    color:#ec7e59;
+   }
+   .dashboard-logout{
+    position:absolute;
+    bottom:2%;
+   }
+   .userimage{
+    width:40px;
+    height: 40px;
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   .main-dashboard .section-dashboard{
+     width:calc(100% - 240px);
+     margin-left:240px;
+     transition: .5s;
+   }
+  
+   .main-dashboard .active{
+     width:70px;
+   } 
+   .main-dashboard .active.sidebar-dashboard a span{
+     display: none;
+   }
+  
+   .main-dashboard .active  .dashboard-list li {
+     text-align:center;
+     padding:.7em 0em;
+     width:90%;
+   } 
+   
+   .main-dashboard .section-dashboard.active{
+     width:calc(100% - 70px);
+     margin-left:70px;
+     transition: .5s;
+   }
+   .main-dashboard .sidebar-dashboard.showmenu{
+     left:0;
+   }
+   .section-dashboard .dashboard-header .dashboard-menu{
+     display:none;
+   }
+   .addproduct{
+    width:200px;
+   }
+   @media (max-width:628px){
+    .main-dashboard .sidebar-dashboard{
+      left:-100%;
+    }
+    .main-dashboard .section-dashboard {
+      width:100%;
+      margin-left: 0;
+    }
+    .section-dashboard .dashboard-header .dashboard-menu{
+      display: block;
+    }
+}

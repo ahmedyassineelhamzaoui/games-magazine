@@ -1,7 +1,7 @@
 <?php
-include 'connexion.php';
+include '../config/connexion.php';
 $title='Sign up';
-include 'head.php';
+include '../config/head.php';
 ?>
 <?php
  @$username=$_POST["username"]; 
@@ -39,7 +39,7 @@ if(isset($click)){
    <main class="main-signup">
         <section  class="section-signup-content">
              <form action="Signup.php" method="post" class="content-form" id="signup_form">    
-                  <img class="signup-avatar" src="pictures/avatarsignup.png" alt="avatar">
+                  <img class="signup-avatar" src="../pictures/avatarsignup.png" alt="avatar">
                   <div class="erreur">
                    <?php echo $erreur ?>
                   </div>
@@ -81,15 +81,15 @@ if(isset($click)){
              
         </section>
         <section class="section-signup-style">
-             <img  class="picture-signup-ware" src="pictures/wave-reverse.png" alt="ware">
+             <img  class="picture-signup-ware" src="../pictures/wave-reverse.png" alt="ware">
              <a class="home-icon" href="home.php"><i class="fa-solid fa-house"></i> Home</a>
              <!-- <img src="img/bg.svg"> -->
              <div class="section-signup-style-content">
              <h2 class="section-style-title">Already have an account ?</h2>
              <a href="Signin.php"><button class="section-submit" type="submit">Sign In</button></a>
              </div>
-             <img class="picture-undraw-signup" src="pictures/undraw.svg" alt="undraw">
+             <img class="picture-undraw-signup" src="../pictures/undraw.svg" alt="undraw">
         </section>
     </main>
-<script src="script1.js"></script>
+<script src="../assets/script1.js"></script>
 </body>

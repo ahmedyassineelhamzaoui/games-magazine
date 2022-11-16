@@ -1,7 +1,7 @@
 <?php
-include 'connexion.php';
+include 'config/connexion.php';
 $title = "products";
-include 'head.php';
+include 'config/head.php';
 
 ?>
 <link href="bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@ include 'head.php';
      ?>
     <div class="row d-flex row align-items-center justify-content-center mx-2" style="min-height: 100vh">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xsm">
-            <form action="" method="post">
+            <form action="show.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $ligne["Id"];?>">
                 <div class="form-group">
                     <label class="form-label">Title</label>

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'scripts.php';
+include '../scripts.php';
 $title = "Dashboard";
-include 'head.php';
+include '../config/head.php';
 if($_SESSION["sucess"]!="oui"){
 header('location:Signin.php');
 }else{
@@ -20,7 +20,7 @@ header('location:Signin.php');
                 <i id="double-left" class="fa fa-angle-double-left"></i>
                 <i id="double-right" class="fa fa-angle-double-right"></i>
                 <div class="user-dashboard border-top-2  d-flex flex-column text-align-center">
-                <img class="w-100 rounded-circle" src="pictures/userman.jpg" alt="manuser">
+                <img class="w-100 rounded-circle" src="../pictures/userman.jpg" alt="manuser">
                 <p class="my-2  text-light"><?= $_SESSION["Username"];?></p>
                 </div>
             </div>
@@ -59,7 +59,7 @@ header('location:Signin.php');
                 </div>
                 <div class="d-flex align-items-center">
                     <p><?= "WELCOM".$_SESSION["Username"];?></p>
-                    <img class="userimage rounded-circle" src="pictures/userman.jpg" alt="manuser">
+                    <img class="userimage rounded-circle" src="../pictures/userman.jpg" alt="manuser">
                 </div>
                 <div class="dashboard-menu">
                     <i class="fa-sharp fa-solid fa-bars"></i>
@@ -94,11 +94,11 @@ header('location:Signin.php');
                             <tr>
                                 <th scope="row"><?php echo $ligne["Title"] ?></th>
                                 <td><?php echo $ligne["namep"] ?></td>
-                                <td><?php echo '<img src="img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
+                                <td><?php echo '<img src="../img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
                                 <td><?php echo $ligne["Price"] ?></td>
                                 <td><?php echo $ligne["Amount"] ?></td>
                                 <td><?php echo $ligne["Description"] ?></td>
-                                <form action="show.php" method="post">
+                                <form action="show.php?id=<?php echo $ligne["Id"];?>" method="post">
                                     <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
                                     <td><input type="submit" class="btn btn-primary" value="more"></td>
                                 </form>
@@ -118,6 +118,7 @@ header('location:Signin.php');
     <div class="modal" tabindex="-1" id="modal-form">
         <div class="modal-dialog">
             <div class="modal-content">
+                
                 <form action="scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Product</h5>
@@ -166,8 +167,8 @@ header('location:Signin.php');
             </div>
         </div>
     </div>
-    <script src="dashboard.js"></script>
-    <script src="scriptadd.js"></script>
+    <script src="../assets/dashboard.js"></script>
+    <script src="../assets/scriptadd.js"></script>
 </body>
 
 </html>

@@ -92,8 +92,7 @@ header .home-login-img{
 .main-home .ractangle-box{
     font-family:serif;
     margin-top:1em;
-    /* background:linear-gradient(rgba(250, 178, 255, 1),rgba(25, 4, 229, 1)); */
-    background-image: url('pictures/backgame.jpg');
+    background-image: url('../pictures/backgame.jpg');
     background-size: cover;
     height:80vh;
     display: grid;
@@ -367,7 +366,7 @@ header .home-login-img{
   }
   .main-dashboard .sidebar-dashboard .dashboard-logo{
      height:12em;
-     background-image: url('pictures/cover2.jpg');
+     background-image: url('../pictures/cover2.jpg');
      background-size: cover;
      position: relative;
    }

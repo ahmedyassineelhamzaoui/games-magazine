@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include 'config/connexion.php';
 if(isset($_POST["save"])){addProduct();}
 function addProduct(){
     global $Connexion;

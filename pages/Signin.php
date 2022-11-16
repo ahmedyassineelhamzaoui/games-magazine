@@ -1,12 +1,12 @@
 <?php
 session_start();
 $title="Sign in";
-include 'head.php';
+include '../config/head.php';
 
 ?>
 <?php
   
-  include 'connexion.php';
+  include '../config/connexion.php';
   
  @$email=$_POST["email"];
  @$pasword=md5($_POST["pasword"]);
@@ -31,18 +31,18 @@ include 'head.php';
  <body>
     <main class="main-signin">
          <section class="section-signin-style">
-             <img  class="picture-signin-ware" src="pictures/wave.png" alt="ware">
+             <img  class="picture-signin-ware" src="../pictures/wave.png" alt="ware">
              <a class="home-icon" href="home.php"><i class="fa-solid fa-house"></i> Home</a>
              <div class="section-signin-style-content">
              <h2 class="">New Here ?</h2>
              <p class="">gaming has more and more followers thanks <br> to more andmore immersive gaming experiences.</p>
              <a href="Signup.php"><button class="section-submit" >Sign Up</buton></a>
              </div>
-            <img class="picture-signin-undraw" src="pictures/undraw-signin.svg" alt="undraw">
+            <img class="picture-signin-undraw" src="../pictures/undraw-signin.svg" alt="undraw">
          </section>
          <section  class="section-signin-content">
              <form action="" method="post" class="content-form" id="signin_form" >
-             <img class="signin-avatar" src="pictures/avatar.png" alt="avatar">
+             <img class="signin-avatar" src="../pictures/avatar.png" alt="avatar">
             
              <h1 class="heading-signin">Welcome</h1>
              <div class="erreur-signin">
@@ -71,5 +71,5 @@ include 'head.php';
        
     </main>
     
-    <script src="script.js"></script>
+    <script src="../assets/script.js"></script>
  </body>

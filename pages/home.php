@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
   $title='home';
- include 'head.php';
+ include '../config/head.php';
   ?>
 
 <body>
@@ -14,7 +14,7 @@
             <a class="home-logo" href="home.php">Enjoy <span class="home-span-logo"> Game</span></a>
             <ul class="nav-home-ul">
                 <li><a class="Sign-in-home" href="Signin.php"></i> Sign in</a></li>
-                <img class="home-login-img" src="pictures/loginundraw.svg" alt="home-login-img">
+                <img class="home-login-img" src="../pictures/loginundraw.svg" alt="home-login-img">
                 <li><a  class="Sign-up-home" href="Signup.php">Sign up</a></li>
                 <label id="home-label-close" for="home_checkbox"></label>
 
@@ -31,7 +31,7 @@
             <a class="button-box" href="Signup.php">See our product</a>
         </div>
         <div class="picture-box">
-            <img class="picture-content-box" src="pictures/box-picture.jpg" alt="box-picture">
+            <img class="picture-content-box" src="../pictures/box-picture.jpg" alt="box-picture">
         </div>
       </div>  
     </main>

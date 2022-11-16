@@ -119,7 +119,7 @@ header('location:Signin.php');
         <div class="modal-dialog">
             <div class="modal-content">
                 
-                <form action="../scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
+                <form action="./scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Product</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>

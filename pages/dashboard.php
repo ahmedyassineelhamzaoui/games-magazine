@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../scripts.php';
+include '../config/connexion.php';
 $title = "Dashboard";
 include '../config/head.php';
 if($_SESSION["sucess"]!="oui"){
@@ -98,7 +98,7 @@ header('location:Signin.php');
                                 <td><?php echo $ligne["Price"] ?></td>
                                 <td><?php echo $ligne["Amount"] ?></td>
                                 <td><?php echo $ligne["Description"] ?></td>
-                                <form action="show.php?id=<?php echo $ligne["Id"];?>" method="post">
+                                <form action="./show.php?id=<?php echo $ligne["Id"];?>" method="post">
                                     <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
                                     <td><input type="submit" class="btn btn-primary" value="more"></td>
                                 </form>
@@ -119,7 +119,7 @@ header('location:Signin.php');
         <div class="modal-dialog">
             <div class="modal-content">
                 
-                <form action="scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
+                <form action="../scripts.php" method="POST" id="form-product" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Product</h5>
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>

@@ -18,6 +18,7 @@ function addProduct(){
     mysqli_query($Connexion,$sql);
     move_uploaded_file($image,'img/'.$filename);
     header('location:dashboard.php');
+    
 }
 
    

@@ -42,11 +42,11 @@ include 'head.php';
                 </div>
                 <div class="form-group">
                     <label class="form-label">Price</label>
-                    <input name="price" type="number" min="1" class="form-control" id="product-price" value="<?= $ligne["Price"];?>">
+                    <input name="price" type="number" min="0" class="form-control" id="product-price" value="<?= $ligne["Price"];?>">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Amount</label>
-                    <input name="amount" type="number" min="1" class="form-control" id="product-amount" value="<?= $ligne["Amount"];?>">
+                    <input name="amount" type="number" min="0" class="form-control" id="product-amount" value="<?= $ligne["Amount"];?>">
                 </div>
                 <div class="form-group">
                      <label class="form-label">Description</label>

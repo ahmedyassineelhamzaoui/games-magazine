@@ -82,6 +82,7 @@ header('location:Signin.php');
                             <th scope="col">Amount</th>
                             <th scope="col">Description</th>
                             <th scope="col">more</th>
+                            <th scope="col">status</th>
                         </tr>
                     </thead>
                     <tbody class="table-light ">
@@ -101,6 +102,7 @@ header('location:Signin.php');
                                     <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
                                     <td><input type="submit" class="btn btn-primary" value="more"></td>
                                 </form>
+                                   <td><?php if($ligne["Amount"]>0 ) echo '<input type="button" class="btn btn-success" value="in stock">' ;else{ echo '<input type="button" class="btn btn-danger" value="unavailable">';}?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -122,16 +124,14 @@ header('location:Signin.php');
                         <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
                     </div>
                     <div class="modal-body">
-                        <!-- This Input Allows Storing Task Index  -->
                         <div class="mb-3">
                             <label class="form-label">Title</label>
                             <input name="title" type="text" class="form-control" id="product-title" />
                         </div>
-
+                         <p id="erreur-title">please select a valid title*</p>
                         <div class="mb-3">
                             <label class="form-label">Type</label>
                             <select name="selectproduct" class="form-control" id="product-type">
-                                <option value="">Please select</option>
                                 <option value="1">Jeux vidéo</option>
                                 <option value="2">Pc gamer</option>
                                 <option value="3">aMateriel Gaming </option>
@@ -141,19 +141,22 @@ header('location:Signin.php');
                             <label class="form-label">Picture</label>
                             <input name="image" type="file" accept=".jpg, .png" class="form-control" id="product-file">
                         </div>
+                        <p id="erreur-picture">please select a valid image*</p>
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input name="price" type="number" min="1" class="form-control" id="product-price">
+                            <input name="price" type="number" min="0" class="form-control" id="product-price">
                         </div>
+                        <p id="erreur-price">please select a valid Price*</p>
                         <div class="mb-3">
                             <label class="form-label">Amount</label>
-                            <input name="amount" type="number" min="1" class="form-control" id="product-amount">
+                            <input name="amount" type="number" min="0" class="form-control" id="product-amount">
                         </div>
+                        <p id="erreur-amount">please select a valid Amount*</p>
                         <div class="mb-0">
                             <label class="form-label">Description</label>
                             <textarea name="description" class="form-control" rows="5" id="product-description"></textarea>
                         </div>
-
+                        <p id="erreur-description">please select a valid Description*</p>
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-light" data-bs-dismiss="modal">Cancel</a>
@@ -163,8 +166,8 @@ header('location:Signin.php');
             </div>
         </div>
     </div>
-    <script src="dashboard.js">
-    </script>
+    <script src="dashboard.js"></script>
+    <script src="scriptadd.js"></script>
 </body>
 
 </html>

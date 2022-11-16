@@ -19,6 +19,7 @@ function addProduct(){
     move_uploaded_file($image,'img/'.$filename);
     header('location:dashboard.php');
 }
+
    
 
 

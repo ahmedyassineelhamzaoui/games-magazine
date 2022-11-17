@@ -45,12 +45,12 @@ if ($_SESSION["sucess"] != "oui") {
                         <i class="mx-3 fa-solid fa-basket-shopping"></i>
                         <span class="span">All products</span>
                     </a>
-                    <a class="mt-2 btn btn-light d-flex align-items-center" href="">
+                    <a href="dashboard.php"  class="mt-2 btn btn-light d-flex align-items-center" href="">
                         <i class="mx-3 fa-solid fa-cart-shopping"></i>
                         <span class="span">Analytics</span>
                     </a>
 
-                    <a class="mt-2 btn btn-light d-flex align-items-center" href="">
+                    <a data-bs-toggle="modal" href="#modal-profile" class="mt-2 btn btn-light d-flex align-items-center" href="">
                         <i class="mx-3 fa-solid fa-gear"></i>
                         <span class="span">Settings</span>
                     </a>
@@ -258,8 +258,72 @@ if ($_SESSION["sucess"] != "oui") {
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+       <!-- setting form -->
+        <?php
+        $user=$_SESSION["Username"];
+        $sql="SELECT * FROM moderator WHERE Username='$user' ";
+        $result=mysqli_query($Connexion,$sql);
+        while($ligne=mysqli_fetch_assoc($result)):
+            
+        ?>
+        <div class="modal" tabindex="-1" id="modal-profile">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <form action="./scripts.php" method="POST" id="form-profil" >
+                        <div class="modal-header">
+                            <h5 class="modal-title">edit Profile</h5>
+                            <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                        </div>
+                        <input type="hidden" name="id" value="<?= $ligne["Id"] ?>">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input name="username" type="text" class="form-control" id="profile-username" value="<?= $ligne["Username"];?>">
+                            </div>
+                            <p class="d-none text-danger" id="erreur-username" >please select a valid username*</p>
+                            <div class="mb-3">
+                                <label class="form-label">Gender</label>
+                                <select name="selectprofile" class="form-control" id="profile-type">
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input name="emailprofile" type="email"  class="form-control" id="profile-email" value="<?= $ligne["Email"];?>">
+                            </div>
+                            <p class="d-none text-danger" id="erreur-email">please chose a valid email*</p>
+                            <div class="mb-3">
+                                <label class="form-label">password</label>
+                                <input disabled  name="passwordprofile" type="password"  class="form-control" id="profile-password" value="<?= $ligne["Password"];?>">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-light" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" name="updateprofile" class="btn btn-warning ">Update</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php endwhile; ?>
+
+
         <script src="../assets/dashboard.js"></script>
         <script src="../assets/scriptadd.js"></script>
+        <script src="../assets/profile.js"></script>
+
     </body>
 
     </html>

@@ -4,6 +4,34 @@ include '../config/connexion.php';
 if(isset($_POST["save"])){addProduct();}
 if(isset($_POST["update"])){update();}
 if(isset($_POST["delete"])){ delete();}
+
+
+if(isset($_POST["updateprofile"])){
+    updateprofile();
+}
+
+
+
+function updateprofile(){
+    global $Connexion;
+    $id=$_POST["id"];
+    $username=$_POST["username"];
+    $email=$_POST["emailprofile"];
+
+        $sql="UPDATE moderator SET Username='$username' , Email='$email' where Id='$id' ";
+        mysqli_query($Connexion,$sql);
+        header('location:./dashboard.php');
+    }
+   
+
+
+
+
+
+
+
+
+
 function addProduct(){
     global $Connexion;
     
@@ -23,8 +51,6 @@ function addProduct(){
     header('location:./dashboard.php');
     
 }
-
-
 function update(){
     global $Connexion;
 
@@ -69,7 +95,10 @@ function delete(){
     header('location:./dashboard.php');
 
 }
-   
+
+
+
+
 
 
 

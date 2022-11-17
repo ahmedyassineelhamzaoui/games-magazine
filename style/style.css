@@ -407,14 +407,6 @@ header .home-login-img{
     width:40px;
     height: 40px;
    }
-   
-   
-   
-   
-   
-   
-   
-   
    .main-dashboard .section-dashboard{
      width:calc(100% - 240px);
      margin-left:240px;
@@ -433,7 +425,6 @@ header .home-login-img{
      padding:.7em 0em;
      width:90%;
    } 
-   
    .main-dashboard .section-dashboard.active{
      width:calc(100% - 70px);
      margin-left:70px;
@@ -447,6 +438,12 @@ header .home-login-img{
    }
    .addproduct{
     width:200px;
+   }
+   .section-dashboard .card{
+    box-shadow: 2px 2px 1px  rgb(109, 108, 108);
+   }
+   .section-dashboard .card .card-body i{
+    color: #ec7e59 !important;;
    }
    @media (max-width:628px){
     .main-dashboard .sidebar-dashboard{

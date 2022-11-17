@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../config/connexion.php';
 if(isset($_POST["save"])){addProduct();}
 if(isset($_POST["update"])){update();}
@@ -35,11 +36,31 @@ function update(){
     $description=$_POST["description"];
     $filename=$_FILES["image"]["name"];
     $image=$_FILES["image"]["tmp_name"];
-    $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Picture='$filename' , Description='$description' where Id='$id' ";
-    mysqli_query($Connexion,$sql);
-    move_uploaded_file($image,'../img/'.$filename);
-    header('location:./dashboard.php');
-}
+    $verify="SELECT Picture FROM product WHERE Id='$id' ";
+    $result=mysqli_query($Connexion,$verify);
+    $number=mysqli_num_rows($result);
+
+        if(empty($filename)){
+            $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Description='$description' where Id='$id' ";
+            mysqli_query($Connexion,$sql);
+            move_uploaded_file($image,'../img/'.$filename);
+            header('location:./dashboard.php');
+         }else{
+            if($number!=0){
+                
+            }else{
+                $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Picture='$filename' , Description='$description' where Id='$id' ";
+                mysqli_query($Connexion,$sql);
+                move_uploaded_file($image,'../img/'.$filename);
+                header('location:./dashboard.php');
+            }
+           
+         }
+    }
+    
+        
+       
+
 function delete(){
     global $Connexion;
     $id=$_POST["id"];

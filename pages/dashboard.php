@@ -6,16 +6,17 @@ include '../config/head.php';
 if ($_SESSION["sucess"] != "oui") {
     header('location:Signin.php');
 } else {
- $Querynumbreproduct="SELECT * From product";
- $result=mysqli_query($Connexion,$Querynumbreproduct);
- $num=mysqli_num_rows($result);
- $resultAmount = mysqli_query($Connexion, 'SELECT SUM(Amount) AS sumvalue FROM product'); 
- $row = mysqli_fetch_assoc($resultAmount); 
- $amountSum = $row['sumvalue'];
- 
- $resultPrice = mysqli_query($Connexion, 'SELECT SUM(Price) AS sumvalue FROM product'); 
- $row1 = mysqli_fetch_assoc($resultPrice);
- $pricesum =  $row1['sumvalue'];
+    $Querynumbreproduct = "SELECT * From product";
+    $result = mysqli_query($Connexion, $Querynumbreproduct);
+    $num = mysqli_num_rows($result);
+    $resultAmount = mysqli_query($Connexion, 'SELECT SUM(Amount) AS sumvalue FROM product');
+    $row = mysqli_fetch_assoc($resultAmount);
+    $amountSum = $row['sumvalue'];
+
+    $resultPrice = mysqli_query($Connexion, 'SELECT SUM(Price) AS sumvalue FROM product');
+    $row1 = mysqli_fetch_assoc($resultPrice);
+    $pricesum =  $row1['sumvalue'];
+
 ?>
 
 
@@ -63,7 +64,7 @@ if ($_SESSION["sucess"] != "oui") {
                 </div>
             </aside>
             <section id="section-dashboards" class="section-dashboard">
-                <header class="my-1 dashboard-header d-flex justify-content-between align-items-center">
+                <header class="dashboard-header d-flex justify-content-between align-items-center">
                     <div class="paragraph-dashboard">
                         <p class="fs-4">Dashboard</p>
                     </div>
@@ -86,24 +87,11 @@ if ($_SESSION["sucess"] != "oui") {
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
-                                <h5 class="card-title">All Product</h5>
-                                <p class="card-text"><?= $num; ?></p>
+                                    <h5 class="card-title">All Product</h5>
+                                    <p class="card-text"><?= $num; ?></p>
                                 </div>
                                 <div>
-                                <i class="fs-3 fa-solid fa-bag-shopping"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body d-flex justify-content-evenly align-items-center">
-                                <div>
-                                <h5 class="card-title">Amount</h5>
-                                <p class="card-text"><?=$amountSum?></p>
-                                </div>
-                                <div>
-                                <i class="fs-3  fa-solid fa-cart-shopping"></i>
+                                    <i class="fs-3 fa-solid fa-bag-shopping"></i>
                                 </div>
                             </div>
                         </div>
@@ -112,11 +100,11 @@ if ($_SESSION["sucess"] != "oui") {
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
-                                <h5 class="card-title">Prices</h5>
-                                <p class="card-text"><?=$pricesum?></p>
+                                    <h5 class="card-title">Amount</h5>
+                                    <p class="card-text"><?= $amountSum ?></p>
                                 </div>
                                 <div>
-                                <i class="fs-3 fa-solid fa-money-check-dollar"></i>
+                                    <i class="fs-3  fa-solid fa-cart-shopping"></i>
                                 </div>
                             </div>
                         </div>
@@ -125,11 +113,24 @@ if ($_SESSION["sucess"] != "oui") {
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
-                                <h5 class="card-title">Best product</h5>
-                                <p class="card-text">number</p>
+                                    <h5 class="card-title">Prices</h5>
+                                    <p class="card-text"><?= $pricesum ?></p>
                                 </div>
                                 <div>
-                                <i class="fs-3 fa-sharp fa-solid fa-circle-check"></i>
+                                    <i class="fs-3 fa-solid fa-money-check-dollar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body d-flex justify-content-evenly align-items-center">
+                                <div>
+                                    <h5 class="card-title">Best product</h5>
+                                    <p class="card-text">number</p>
+                                </div>
+                                <div>
+                                    <i class="fs-3 fa-sharp fa-solid fa-circle-check"></i>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +152,19 @@ if ($_SESSION["sucess"] != "oui") {
                         </thead>
                         <tbody class="table-light ">
                             <?php
-                            $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp";
+                            $sqll = "SELECT * from product";
+                            $result = mysqli_query($Connexion, $sqll);
+                            $num = mysqli_num_rows($result);
+                            $numberproductbypage = 4;
+                            $totalpages = ceil($num / $numberproductbypage);
+                            if (isset($_GET["page"])) {
+                                $page = $_GET["page"];
+                            } else {
+                                $page = 1;
+                            }
+                            $startlimit = ($page - 1) * $numberproductbypage;
+
+                            $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp LIMIT $startlimit,$numberproductbypage ";
                             $result = mysqli_query($Connexion, $sql);
                             while ($ligne = mysqli_fetch_assoc($result)) {
                             ?>
@@ -174,6 +187,17 @@ if ($_SESSION["sucess"] != "oui") {
                             <?php } ?>
                         </tbody>
                     </table>
+                </div>
+                <!-- pagination -->
+                <div class=" mb-3 d-flex justify-content-end">
+                <?php
+                for ($btn = 1; $btn <= $totalpages; $btn++) {
+                ?>  
+                    <a href="dashboard.php?page=<?= $btn ?>" class="mx-1 btn btn-primary text-light text-decoration-none"><?= $btn ?> </a></button>
+                <?php
+                }
+                // si le variable page exist return the numbre of page else return the default 1
+                ?>
                 </div>
             </section>
 

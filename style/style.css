@@ -363,6 +363,7 @@ header .home-login-img{
     height:100vh;
     transition:.5s;
     display:block;
+    z-index: 100;
   }
   .main-dashboard .sidebar-dashboard .dashboard-logo{
      height:12em;
@@ -445,6 +446,7 @@ header .home-login-img{
    .section-dashboard .card .card-body i{
     color: #ec7e59 !important;;
    }
+    
    @media (max-width:628px){
     .main-dashboard .sidebar-dashboard{
       left:-100%;

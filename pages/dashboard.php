@@ -83,7 +83,7 @@ if ($_SESSION["sucess"] != "oui") {
                     </a>
                 </div>
                 <div class="row mx-1 mt-2">
-                    <div class="col-lg-3">
+                    <div class="mt-2 col-lg-3 col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
@@ -96,7 +96,7 @@ if ($_SESSION["sucess"] != "oui") {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="mt-2 col-lg-3 col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
@@ -109,7 +109,7 @@ if ($_SESSION["sucess"] != "oui") {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="mt-2 col-lg-3 col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
@@ -122,7 +122,7 @@ if ($_SESSION["sucess"] != "oui") {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="mt-2 col-lg-3 col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
@@ -136,6 +136,79 @@ if ($_SESSION["sucess"] != "oui") {
                         </div>
                     </div>
                 </div>
+                <div style="width:400px" class="ms-2 mt-4">
+                    <form method="post" action="dashboard.php" class="d-flex" role="search">
+                    <input id="input-search" class="form-control me-2" name="product-search" type="search" placeholder="name of product" aria-label="Search">
+                    <button id="submit-search" class="btn btn-outline-primary" name="search" type="submit">Search</button>
+                    </form>
+                </div>
+                <?php
+                $sqll = "SELECT * from product";
+                $result = mysqli_query($Connexion, $sqll);
+                $num = mysqli_num_rows($result);
+                $numberproductbypage = 4;
+                $totalpages = ceil($num / $numberproductbypage);
+                if (isset($_GET["page"])) {
+                    $page = $_GET["page"];
+                } else {
+                    $page = 1;
+                }
+                $startlimit = ($page - 1) * $numberproductbypage;
+                $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp LIMIT $startlimit,$numberproductbypage ";
+                $result = mysqli_query($Connexion, $sql);
+                @$productName=$_POST["product-search"];
+                $message;
+                if(isset($_POST['search'])){
+                   
+                            $sql="SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp  WHERE Title='$productName' LIMIT $startlimit,$numberproductbypage ";
+                            $result =mysqli_query($Connexion,$sql);
+                            $numberProduct=mysqli_num_rows($result);
+                            if($numberProduct==0){
+                                ?>
+                                <div class="mx-2 alert alert-warning alert-dismissible" role="alert">
+                                  this product dosn't exist!
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <?php
+                            }
+                }
+                if(isset($_SESSION["addproduct"])){
+                    ?>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <Strong>Success!</Strong>
+                        <?php 
+						echo $_SESSION['addproduct']; 
+                        unset($_SESSION['addproduct']);
+					     ?>  
+                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                 <?php   
+                }
+                if(isset($_SESSION["updateProduct"])){
+                    ?>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <Strong>Success</Strong>
+                        <?php
+                        echo $_SESSION["updateProduct"];
+                        unset($_SESSION["updateProduct"]);
+                        ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    <?php
+                }
+                if(isset($_SESSION["deleteProduct"])){
+                    ?>
+                    <div class="mx-2 alert alert-success alert-dismissible fade show">
+                    <Strong>Success</Strong>
+                        <?php
+                        echo $_SESSION["deleteProduct"];
+                        unset($_SESSION["deleteProduct"]);
+                        ?>
+                        <button type="button" class="btn-close" dada-bs-dismiss="alert"></button>
+                    </div>
+                    <?php
+                }
+                ?>
                 <div class="table-responsive mx-2 mt-5 d-flex justify-content-center ">
                     <table class="table">
                         <thead class="table-dark">
@@ -152,27 +225,14 @@ if ($_SESSION["sucess"] != "oui") {
                         </thead>
                         <tbody class="table-light ">
                             <?php
-                            $sqll = "SELECT * from product";
-                            $result = mysqli_query($Connexion, $sqll);
-                            $num = mysqli_num_rows($result);
-                            $numberproductbypage = 4;
-                            $totalpages = ceil($num / $numberproductbypage);
-                            if (isset($_GET["page"])) {
-                                $page = $_GET["page"];
-                            } else {
-                                $page = 1;
-                            }
-                            $startlimit = ($page - 1) * $numberproductbypage;
 
-                            $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp LIMIT $startlimit,$numberproductbypage ";
-                            $result = mysqli_query($Connexion, $sql);
                             while ($ligne = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
-                                    <th scope="row"><?php echo $ligne["Title"] ?></th>
+                                    <th class="text-center" scope="row"><?php echo $ligne["Title"] ?></th>
                                     <td><?php echo $ligne["namep"] ?></td>
                                     <td><?php echo '<img src="../img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
-                                    <td><?php echo $ligne["Price"] ?></td>
+                                    <td><?php echo $ligne["Price"].'$' ?></td>
                                     <td><?php echo $ligne["Amount"] ?></td>
                                     <td><?php echo $ligne["Description"] ?></td>
                                     <form action="./show.php?id=<?php echo $ligne["Id"]; ?>" method="post">
@@ -191,6 +251,7 @@ if ($_SESSION["sucess"] != "oui") {
                 <!-- pagination -->
                 <div class=" mb-3 d-flex justify-content-end">
                 <?php
+                
                 for ($btn = 1; $btn <= $totalpages; $btn++) {
                 ?>  
                     <a href="dashboard.php?page=<?= $btn ?>" class="mx-1 btn btn-primary text-light text-decoration-none"><?= $btn ?> </a></button>
@@ -226,7 +287,7 @@ if ($_SESSION["sucess"] != "oui") {
                                 <select name="selectproduct" class="form-control" id="product-type">
                                     <option value="1">Jeux vidéo</option>
                                     <option value="2">Pc gamer</option>
-                                    <option value="3">aMateriel Gaming </option>
+                                    <option value="3">Materiel Gaming </option>
                                 </select>
                             </div>
                             <div class="mb-3">

@@ -48,12 +48,11 @@ function addProduct(){
     $sql="INSERT INTO product VALUES(null,'$title','$type','$price','$amount','$filename','$description') ";
     mysqli_query($Connexion,$sql);
     move_uploaded_file($image,'../img/'.$filename);
+    $_SESSION["addproduct"]="Produit added";
     header('location:./dashboard.php');
-    
 }
 function update(){
     global $Connexion;
-
     $id=$_POST["id"];
     $title=$_POST["title"];
     $type=$_POST["selectproduct"];
@@ -70,6 +69,7 @@ function update(){
             $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Description='$description' where Id='$id' ";
             mysqli_query($Connexion,$sql);
             move_uploaded_file($image,'../img/'.$filename);
+            $_SESSION["addproduct"]="prdouit has been added successfully !";
             header('location:./dashboard.php');
          }else{
             if($number!=0){
@@ -78,6 +78,7 @@ function update(){
                 $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Picture='$filename' , Description='$description' where Id='$id' ";
                 mysqli_query($Connexion,$sql);
                 move_uploaded_file($image,'../img/'.$filename);
+                $_SESSION["updateProduct"]="product has been updated successfully !";
                 header('location:./dashboard.php');
             }
            
@@ -92,6 +93,7 @@ function delete(){
     $id=$_POST["id"];
     $sql="DELETE FROM product WHERE Id='$id='";
     mysqli_query($Connexion,$sql);
+    $_SESSION["deleteProduct"]="Product has been deleted successfully !";
     header('location:./dashboard.php');
 
 }

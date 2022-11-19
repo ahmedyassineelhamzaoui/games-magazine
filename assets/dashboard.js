@@ -23,4 +23,17 @@ dashboardMenu.onclick = function(){
     asidebar.classList.toggle("showmenu");
 }
 
+let inputSerch=document.querySelector("#input-search");
 
+let submitSearch=document.querySelector("#submit-search");
+submitSearch.disabled = true;
+
+inputSerch.addEventListener('keyup', e => {
+
+    if (e.target.value == "") {
+        submitSearch.disabled = true;
+    }
+    else {
+        submitSearch.disabled = false;
+    }
+  });

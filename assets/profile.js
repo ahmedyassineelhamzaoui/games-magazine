@@ -3,11 +3,11 @@ let profileUsername=document.querySelector("#profile-username");
 let profileEmail=document.querySelector('#profile-email');
 let erreurUsername=document.querySelector("#erreur-username");
 let erreurEmail=document.querySelector("#erreur-email");
-
+let profilePassword=document.querySelector("#profile-password");
 
 let emailRegex=/^[^-_.][a-zA-Z0-9-_.]+@[a-z]+.[a-z]{2,3}$/
 let  userRegex=/^[^-_.][a-zA-Z0-9-_.]{2,10}$/
-
+profilePassword.disabled = true;
 
 
 formProfil.addEventListener('submit',(e)=>{
@@ -23,7 +23,6 @@ formProfil.addEventListener('submit',(e)=>{
         e.preventDefault();
     }
     profileUsername.onclick=()=>{
-        console.log("ok");
         profileUsername.style.border="";
         erreurUsername.classList.add("d-none");
     }

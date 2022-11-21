@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+if(@$_SESSION["authorize"]=="yes"){
+  header('location:dashboard.php');
+ }
 include '../config/connexion.php';
 $title='Sign up';
 include '../config/head.php';

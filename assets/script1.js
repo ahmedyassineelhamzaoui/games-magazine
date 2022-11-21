@@ -12,8 +12,9 @@ let emailMessageerreur=document.querySelector("#email-message-erreur")
 let passwordmessageerreur=document.querySelector("#password-message-erreur")
 let mailExist=document.querySelector("#mail-exist");
 let emailRegex=/^[^-_.][a-zA-Z0-9-_.]+@[a-z]+.[a-z]{2,3}$/
-let usernameRegex=/^[^-_.][a-zA-Z0-9-_.]{2,10}$/
+let usernameRegex=/^[^-_.][a-zA-Z0-9-_.]{2,8}$/
 let passwordRegex=/^[^-_.@#][a-zA-Z0-9-_.@#]{8,14}$/
+
 
 usernameMmessageerreur.style.color="red"
 usernameMmessageerreur.style.display="none"

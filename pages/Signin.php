@@ -1,8 +1,10 @@
 <?php
 session_start();
+if(@$_SESSION["authorize"]=="yes"){
+   header('location:dashboard.php');
+  }
 $title="Sign in";
 include '../config/head.php';
-
 ?>
 <?php
   
@@ -14,16 +16,15 @@ include '../config/head.php';
  if(isset($_POST["Signinbutton"])){    
    $sql="SELECT * FROM moderator WHERE Email='$email' AND Password='$pasword'";
    $result=mysqli_query($Connexion,$sql);
-   $row=mysqli_fetch_assoc($result);
+   $row=mysqli_fetch_assoc($result);//pour afficher le nom 
    $Ncount=mysqli_num_rows($result);
    if(!empty($pasword) && !empty($email)){
    if($Ncount==0){
       $erreur="<li>Wrong! email or password</li>";
    }else{
      $_SESSION["sucess"]="oui";
-     $_SESSION["Username"]=$row["Username"];
+     $_SESSION["Id"]=$row["Id"];
      header('location:dashboard.php');
-
    }
    }
 }
@@ -73,3 +74,6 @@ include '../config/head.php';
     
     <script src="../assets/script.js"></script>
  </body>
+ <?php
+
+?>

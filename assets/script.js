@@ -11,13 +11,18 @@ signinPassworderreur.style.display="none";
 signinPassworderreur.style.color="red";
 signinPassworderreur.style.textAlign="left";
 
+
+let emailRegex=/^[^-_.][a-zA-Z0-9-_.]+@[a-z]+.[a-z]{2,3}$/
+let passwordRegex=/^[a-zA-Z0-9-_.@#]{8,14}$/
+
+
 signinForm.addEventListener('submit',(e)=>{
-   if(signinForm.email.value==""){
+   if(!emailRegex.test(signinForm.email.value)){
     inputFeldemail.style.border="2px solid red";
     signinEmailerreur.style.display="block";
     e.preventDefault();
    }
-   if(signinForm.pasword.value==""){
+   if(!passwordRegex.test(signinForm.pasword.value)){
     inputFeldpassword.style.border="2px solid red";
     signinPassworderreur.style.display="block";
     e.preventDefault();
@@ -32,4 +37,3 @@ inputFeldpassword.onclick=()=>{
     signinPassworderreur.style.display="none";
 
 }
-// sign-up form validation

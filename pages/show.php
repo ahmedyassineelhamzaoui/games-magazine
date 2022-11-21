@@ -1,4 +1,9 @@
 <?php
+session_start();
+ if(@$_SESSION["authorize"]!="yes"){
+  header('location:dashboard.php');
+ }
+
 include '../config/connexion.php';
 $title = "products";
 include '../config/head.php';
@@ -103,3 +108,4 @@ include '../config/head.php';
 
               </script>
 </body>
+ 

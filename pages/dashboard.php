@@ -5,17 +5,22 @@ $title = "Dashboard";
 include '../config/head.php';
 if ($_SESSION["sucess"] != "oui") {
     header('location:Signin.php');
-} else {
+} 
+    $_SESSION["authorize"]="yes";
     $Querynumbreproduct = "SELECT * From product";
     $result = mysqli_query($Connexion, $Querynumbreproduct);
     $num = mysqli_num_rows($result);
     $resultAmount = mysqli_query($Connexion, 'SELECT SUM(Amount) AS sumvalue FROM product');
     $row = mysqli_fetch_assoc($resultAmount);
     $amountSum = $row['sumvalue'];
-
+    
     $resultPrice = mysqli_query($Connexion, 'SELECT SUM(Price) AS sumvalue FROM product');
     $row1 = mysqli_fetch_assoc($resultPrice);
     $pricesum =  $row1['sumvalue'];
+    $ids=$_SESSION["Id"];
+    $sessionsql ="SELECT * From moderator WHERE Id='$ids' ";
+    $rsults=mysqli_query($Connexion,$sessionsql);
+    $rowss=mysqli_fetch_assoc($rsults);
 
 ?>
 
@@ -32,11 +37,11 @@ if ($_SESSION["sucess"] != "oui") {
                     <i id="double-right" class="fa fa-angle-double-right"></i>
                     <div class="user-dashboard border-top-2  d-flex flex-column text-align-center">
                         <img class="w-100 rounded-circle" src="../pictures/userman.jpg" alt="manuser">
-                        <p class="my-2  text-light"><?= $_SESSION["Username"]; ?></p>
+                        <p class="my-2  text-light"><?= $rowss["Username"];  ?></p>
                     </div>
                 </div>
-                <div class="dashboard-list d-flex">
-
+                <div class="d-flex align-content-between flex-wrap contn">
+                <div class="dashboard-list d-flex mb-5 w-100">
                     <a data-bs-toggle="modal" href="#modal-form" class="mt-2  btn btn-light d-flex align-items-center" href="">
                         <i class="mx-3 fa-solid fa-square-plus"></i>
                         <span class="span">Add product</span>
@@ -50,34 +55,37 @@ if ($_SESSION["sucess"] != "oui") {
                         <span class="span">Analytics</span>
                     </a>
 
-                    <a data-bs-toggle="modal" href="#modal-profile" class="mt-2 btn btn-light d-flex align-items-center" href="">
+                    <a data-bs-toggle="modal" data-bs-target="#modal-profile" class="mt-2 btn btn-light d-flex align-items-center" href="">
                         <i class="mx-3 fa-solid fa-gear"></i>
                         <span class="span">Settings</span>
                     </a>
 
                 </div>
-                <div class="mx-3 dashboard-logout d-flex">
-                    <a class="btn-light d-flex align-items-center" href="">
+                <div class="mx-3 mt-5 d-flex">
+                    <form action="./déconexion.php" method="post">
+                    <a name="logout" type="submit" class="btn-light d-flex align-items-center" href="déconexion.php">
                         <i class="mx-3 fa-solid fa-right-from-bracket"></i>
                         <span class="span">Log out</span>
                     </a>
+                    </form>
                 </div>
+                </div> 
             </aside>
             <section id="section-dashboards" class="section-dashboard">
-                <header class="dashboard-header d-flex justify-content-between align-items-center">
+                <header class="me-2 ms-3 dashboard-header d-flex justify-content-between align-items-center">
                     <div class="paragraph-dashboard">
                         <p class="fs-4">Dashboard</p>
                     </div>
-                    <div class="mx-2 d-flex">
-                        <p class="me-1" style="hieght:40px;line-height:40px"><?= $_SESSION["Username"]; ?></p>
+                    <div class="mx-2 d-flex dashboard-client">
+                        <p class="me-1" style="hieght:40px;line-height:40px"><?= $rowss["Username"];?></p>
                         <img class="userimage rounded-circle" src="../pictures/userman.jpg" alt="manuser">
                     </div>
                     <div class="dashboard-menu">
                         <i class="fa-sharp fa-solid fa-bars"></i>
                     </div>
                 </header>
-                <div class="addproduct ms-auto me-2">
-                    <a data-bs-toggle="modal" href="#modal-form" class="mt-2  btn btn-light d-flex align-items-center" href="">
+                <div class="addproduct ms-auto me-3">
+                    <a data-bs-toggle="modal" href="#modal-form" class="mt-2  btn btn-light asspro d-flex align-items-center" href="">
                         <i class="mx-3 fa-solid fa-square-plus"></i>
                         <span class="span">Add product</span>
                     </a>
@@ -136,8 +144,8 @@ if ($_SESSION["sucess"] != "oui") {
                         </div>
                     </div>
                 </div>
-                <div style="width:400px" class="ms-2 mt-4">
-                    <form method="post" action="dashboard.php" class="d-flex" role="search">
+                <div style="width:80vw" class="d-flex m-3 mt-4">
+                    <form style="width:400px" method="post" action="dashboard.php" class="d-flex " role="search">
                     <input id="input-search" class="form-control me-2" name="product-search" type="search" placeholder="name of product" aria-label="Search">
                     <button id="submit-search" class="btn btn-outline-primary" name="search" type="submit">Search</button>
                     </form>
@@ -165,7 +173,7 @@ if ($_SESSION["sucess"] != "oui") {
                             $numberProduct=mysqli_num_rows($result);
                             if($numberProduct==0){
                                 ?>
-                                <div class="mx-2 alert alert-warning alert-dismissible" role="alert">
+                                <div class="mx-3 alert alert-warning alert-dismissible" role="alert">
                                   this product dosn't exist!
                                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
@@ -174,7 +182,7 @@ if ($_SESSION["sucess"] != "oui") {
                 }
                 if(isset($_SESSION["addproduct"])){
                     ?>
-                    <div class="alert alert-success alert-dismissible fade show">
+                    <div class="mx-3 alert alert-success alert-dismissible fade show">
                         <Strong>Success!</Strong>
                         <?php 
 						echo $_SESSION['addproduct']; 
@@ -186,7 +194,7 @@ if ($_SESSION["sucess"] != "oui") {
                 }
                 if(isset($_SESSION["updateProduct"])){
                     ?>
-                    <div class="alert alert-success alert-dismissible fade show">
+                    <div class="mx-3 alert alert-success alert-dismissible fade show">
                         <Strong>Success</Strong>
                         <?php
                         echo $_SESSION["updateProduct"];
@@ -198,50 +206,53 @@ if ($_SESSION["sucess"] != "oui") {
                 }
                 if(isset($_SESSION["deleteProduct"])){
                     ?>
-                    <div class="mx-2 alert alert-success alert-dismissible fade show">
+                    <div class="mx-3 alert alert-success alert-dismissible fade show">
                     <Strong>Success</Strong>
                         <?php
                         echo $_SESSION["deleteProduct"];
                         unset($_SESSION["deleteProduct"]);
                         ?>
-                        <button type="button" class="btn-close" dada-bs-dismiss="alert"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                     <?php
                 }
                 ?>
-                <div class="table-responsive mx-2 mt-5 d-flex justify-content-center ">
-                    <table class="table">
+                <div  class="table-responsive mx-3 mt-2 ">
+                    <table style="overflow-x:auto;" class="table">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">Title</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Picture</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">more</th>
-                                <th scope="col">status</th>
+                                <th class="text-center" scope="col">Title</th>
+                                <th class="text-center" scope="col">Type</th>
+                                <th class="text-center" scope="col">Picture</th>
+                                <th class="text-center" scope="col">Price</th>
+                                <th class="text-center" scope="col">Amount</th>
+                                <th class="text-center" scope="col">Description</th>
+                                <th class="text-center" scope="col">more</th>
+                                <th class="text-center" scope="col">status</th>
                             </tr>
                         </thead>
                         <tbody class="table-light ">
                             <?php
 
                             while ($ligne = mysqli_fetch_assoc($result)) {
+                                if(strlen($ligne["Description"])>20){
+                                    $ligne["Description"]=substr($ligne["Description"],0,20).'...';
+                                    }
                             ?>
                                 <tr>
-                                    <th class="text-center" scope="row"><?php echo $ligne["Title"] ?></th>
-                                    <td><?php echo $ligne["namep"] ?></td>
-                                    <td><?php echo '<img src="../img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
-                                    <td><?php echo $ligne["Price"].'$' ?></td>
-                                    <td><?php echo $ligne["Amount"] ?></td>
-                                    <td><?php echo $ligne["Description"] ?></td>
+                                    <td class="text-center" scope="row"><?php echo $ligne["Title"] ?></td>
+                                    <td class="text-center"><?php echo $ligne["namep"] ?></td>
+                                    <td class="text-center"><?php echo '<img src="../img/' . $ligne["Picture"] . '" style="width:100px;height:70px;">' ?></td>
+                                    <td class="text-center"><?php echo $ligne["Price"].'$' ?></td>
+                                    <td class="text-center"><?php echo $ligne["Amount"] ?></td>
+                                    <td class="text-center"><?php echo $ligne["Description"] ?></td>
                                     <form action="./show.php?id=<?php echo $ligne["Id"]; ?>" method="post">
                                         <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
-                                        <td><input type="submit" class="btn btn-primary" value="more"></td>
+                                        <td class="text-center"><input type="submit" class="btn more text-light" value="more"></td>
                                     </form>
-                                    <td><?php if ($ligne["Amount"] > 0) echo '<input type="button" class="btn btn-success" value="in stock">';
+                                    <td class="text-center"><?php if ($ligne["Amount"] > 0) echo '<input type="button" class="btn stock text-light" value="in stock">';
                                         else {
-                                            echo '<input type="button" class="btn btn-danger" value="unavailable">';
+                                            echo '<input type="button" class="btn empty  text-light" value="unavailable">';
                                         } ?></td>
                                 </tr>
                             <?php } ?>
@@ -249,17 +260,18 @@ if ($_SESSION["sucess"] != "oui") {
                     </table>
                 </div>
                 <!-- pagination -->
-                <div class=" mb-3 d-flex justify-content-end">
+                <div class=" mb-3 d-flex justify-content-center">
                 <?php
                 
                 for ($btn = 1; $btn <= $totalpages; $btn++) {
                 ?>  
-                    <a href="dashboard.php?page=<?= $btn ?>" class="mx-1 btn btn-primary text-light text-decoration-none"><?= $btn ?> </a></button>
+                    <a href="dashboard.php?page=<?= $btn ?>" class="mx-1 btn btn-pagination text-center text-light text-decoration-none"><?= $btn ?> </a>
                 <?php
                 }
                 // si le variable page exist return the numbre of page else return the default 1
                 ?>
                 </div>
+
             </section>
 
         </main>
@@ -330,10 +342,10 @@ if ($_SESSION["sucess"] != "oui") {
 
        <!-- setting form -->
         <?php
-        $user=$_SESSION["Username"];
-        $sql="SELECT * FROM moderator WHERE Username='$user' ";
+        $user=$_SESSION["Id"];
+        $sql="SELECT * FROM moderator WHERE Id='$user' ";
         $result=mysqli_query($Connexion,$sql);
-        while($ligne=mysqli_fetch_assoc($result)):
+        $ligne=mysqli_fetch_assoc($result);
             
         ?>
         <div class="modal" tabindex="-1" id="modal-profile">
@@ -378,7 +390,6 @@ if ($_SESSION["sucess"] != "oui") {
                 </div>
             </div>
         </div>
-        <?php endwhile; ?>
 
 
         <script src="../assets/dashboard.js"></script>
@@ -388,4 +399,3 @@ if ($_SESSION["sucess"] != "oui") {
     </body>
 
     </html>
-<?php } ?>

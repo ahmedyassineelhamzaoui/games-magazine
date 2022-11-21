@@ -304,7 +304,6 @@ header .home-login-img{
 .main-signup .content-form .content-input-select{
     width:90%;
     color:rgb(93, 92, 92);
-    border:none;
 }
 .main-signup .content-form .input-checkbox{
     text-align: left;
@@ -353,6 +352,13 @@ header .home-login-img{
  
  /* ++++++++++++++++++++++++++++++++++++++++++ end signup page ++++++++++++++++++++++++++++++++++++ */
  /* ++++++++++++++++++++++++++++++++++++++++++ start dashboard page ++++++++++++++++++++++++++++++++++++ */
+ /*
+    #3f015c
+    #3b5dbd
+    #130348
+    #de0b67
+    #023e4e 
+*/
  .dashboard{
     background-color: #e2e0e0;
  }
@@ -367,7 +373,7 @@ header .home-login-img{
   }
   .main-dashboard .sidebar-dashboard .dashboard-logo{
      height:12em;
-     background-image: url('../pictures/cover2.jpg');
+     background-image: url('../pictures/backgame1.jpg');
      background-size: cover;
      position: relative;
    }
@@ -395,14 +401,13 @@ header .home-login-img{
    }
    .sidebar-dashboard a{
     text-decoration: none;
-    color:gray;
+    color:#3f015c;
    }
    .sidebar-dashboard a:hover{
-    color:#ec7e59;
+    color:#3b5dbd;
    }
-   .dashboard-logout{
-    position:absolute;
-    bottom:2%;
+   .contn{
+    height:70vh;
    }
    .userimage{
     width:40px;
@@ -436,17 +441,52 @@ header .home-login-img{
    }
    .section-dashboard .dashboard-header .dashboard-menu{
      display:none;
+     font-size: 25px;
+     cursor:pointer;
    }
+   .section-dashboard .dashboard-header .dashboard-menu:hover{
+    border:2px solid black;
+    padding: .1em;
+    border-radius: .2em ;
+    transition: .5s;
+  }
    .addproduct{
-    width:200px;
+    width:180px;
+   }
+   .addproduct .asspro{
+    color: #3b5dbd;
+   }
+   .addproduct .asspro:hover{
+    color:#3f015c !important;
    }
    .section-dashboard .card{
     box-shadow: 2px 2px 1px  rgb(109, 108, 108);
    }
    .section-dashboard .card .card-body i{
-    color: #ec7e59 !important;;
+    color:#3f015c !important;
    }
-    
+   .btn-pagination{
+    width:35px;
+    background-color: #3f015c !important;
+   }
+   .more{
+    background-color: #050061 !important;
+   }
+   .more:hover{
+    background-color:#3b5dbd !important;
+   }
+   .empty{
+    background-color:#b82665 !important;
+   
+   }
+   .stock{
+    background-color:#023e4e!important;
+   }
+   .alert-warning{
+    background-color:#fff79f !important;
+   }
+ 
+
    @media (max-width:628px){
     .main-dashboard .sidebar-dashboard{
       left:-100%;
@@ -458,4 +498,8 @@ header .home-login-img{
     .section-dashboard .dashboard-header .dashboard-menu{
       display: block;
     }
-}
+    .dashboard-client p,img{
+        display: none;
+    }
+    
+    }

@@ -1,13 +1,17 @@
 <?php
 session_start();
+
+
 include '../config/connexion.php';
-if(isset($_POST["save"])){addProduct();}
-if(isset($_POST["update"])){update();}
-if(isset($_POST["delete"])){ delete();}
+
+if(isset($_POST["save"])){ addProduct();}
+else if(isset($_POST["update"])){ update();}
+else if(isset($_POST["delete"])){  delete();}
 
 
-if(isset($_POST["updateprofile"])){
-    updateprofile();
+else if(isset($_POST["updateprofile"])){ updateprofile();}
+else{
+  header('location:dashboard.php');
 }
 
 
@@ -48,7 +52,7 @@ function addProduct(){
     $sql="INSERT INTO product VALUES(null,'$title','$type','$price','$amount','$filename','$description') ";
     mysqli_query($Connexion,$sql);
     move_uploaded_file($image,'../img/'.$filename);
-    $_SESSION["addproduct"]="Produit added";
+    $_SESSION["addproduct"]="product has been added successfully !";
     header('location:./dashboard.php');
 }
 function update(){
@@ -68,8 +72,7 @@ function update(){
         if(empty($filename)){
             $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Description='$description' where Id='$id' ";
             mysqli_query($Connexion,$sql);
-            move_uploaded_file($image,'../img/'.$filename);
-            $_SESSION["addproduct"]="prdouit has been added successfully !";
+            $_SESSION["updateProduct"]="product has been updated successfully !";
             header('location:./dashboard.php');
          }else{
             if($number!=0){
@@ -97,11 +100,6 @@ function delete(){
     header('location:./dashboard.php');
 
 }
-
-
-
-
-
 
 
 ?>

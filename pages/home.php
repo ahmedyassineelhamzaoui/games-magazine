@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(@$_SESSION["authorize"]=="yes"){
+  header('location:dashboard.php');
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php

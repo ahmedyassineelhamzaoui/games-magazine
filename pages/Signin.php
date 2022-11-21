@@ -1,10 +1,11 @@
 <?php
 session_start();
-if(@$_SESSION["authorize"]=="yes"){
-   header('location:dashboard.php');
-  }
+
 $title="Sign in";
 include '../config/head.php';
+if(isset($_SESSION["Id"])){
+   header('location:dashboard.php');
+}
 ?>
 <?php
   

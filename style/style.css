@@ -361,6 +361,7 @@ header .home-login-img{
 */
  .dashboard{
     background-color: #e2e0e0;
+    overflow-x:hidden;
  }
  .main-dashboard .sidebar-dashboard{
     position:fixed;

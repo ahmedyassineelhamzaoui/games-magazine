@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(@$_SESSION["authorize"]=="yes"){
+if(isset($_SESSION["Id"])){
   header('location:dashboard.php');
- }
+}
 ?>
 
 <!DOCTYPE html>

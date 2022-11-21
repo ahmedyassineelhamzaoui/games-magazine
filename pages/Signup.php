@@ -4,7 +4,7 @@ session_start();
 include '../config/connexion.php';
 $title='Sign up';
 include '../config/head.php';
-if(isset($_SESSION["Id"])){
+  if(isset($_SESSION["Id"])){
    header('location:dashboard.php');
 }
 ?>
@@ -54,11 +54,9 @@ if(isset($click)){
                      <i class="fa-solid fa-user"></i>
                      <input class="content-input" name="username" id="username" type="text" placeholder="Username">
                   </div>
-                  <p id="select-message-erreur">please enter a valid Gender*</p>
                   <div class="input-feld">
                      <i class="fa-solid fa-venus-mars"></i>              
                      <select  class="content-input content-input-select" name="signupSelect" id="signup_select">
-                        <option value="">Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                      </select>
@@ -73,10 +71,10 @@ if(isset($click)){
                      <i class="fas fa-lock"></i>               
                      <input class="content-input" name="pasword" id="password" type="password" placeholder="Password">
                   </div>
-                  <div class="input-checkbox" >
+                  <!-- <div class="input-checkbox" >
                      <input  name="checkbox" id="checkbox" type="checkbox" >
                      <label for="checkbox">Remembre me</label>
-                  </div>
+                  </div> -->
                   <button name="signupbutton" class="section-submit" type="submit">sign up</button>
                   <div class="section-signup-style-content">
                   <h2 class="section-style-title">Already have an account ?</h2>

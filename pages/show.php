@@ -36,7 +36,7 @@ include '../config/head.php';
                             <option value="">Please select</option>
                             <option value="1" <?php echo $ligne["Type"] == 1 ? 'selected' : '' ?>>Jeux vidéo</option>
                             <option value="2" <?php echo $ligne["Type"] == 2 ? 'selected' : '' ?>>Pc gamer</option>
-                            <option value="3" <?php echo $ligne["Type"] == 3 ? 'selected' : '' ?>>aMateriel Gaming </option>
+                            <option value="3" <?php echo $ligne["Type"] == 3 ? 'selected' : '' ?>>Materiel Gaming </option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -85,12 +85,12 @@ include '../config/head.php';
                      let description=/^[a-zA-Z\s]{5,300}$/
 
                             updateForm.addEventListener('click',(e)=>{
-                            if(!titleRegex.test(productTitle.value)){
+                            if(!titleRegex.test(productTitle.value) || productTitle.value.trim().length ===0){
                                 productTitle.style.border="2px solid red"
                                 erreurtitleForm.classList.remove("d-none")
                                 e.preventDefault()
                             } 
-                            if(!description.test(productDescription.value)){
+                            if(!description.test(productDescription.value || productTitle.value.trim().length ===0)){
                                 productDescription.style.border="2px solid red"
                                 erreurdescriptionForm.classList.remove("d-none")
                                 e.preventDefault()

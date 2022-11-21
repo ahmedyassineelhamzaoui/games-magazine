@@ -7,7 +7,6 @@ let usernameSignupfeld=document.querySelector("#username_signup_feld")
 let emailSignupfeld=document.querySelector("#email_signup_feld")
 let passwordSignupfeld=document.querySelector("#password_signup_feld")
 let usernameMmessageerreur=document.querySelector("#username-message-erreur")
-let selectMessageerreur=document.querySelector("#select-message-erreur")
 let emailMessageerreur=document.querySelector("#email-message-erreur")
 let passwordmessageerreur=document.querySelector("#password-message-erreur")
 let mailExist=document.querySelector("#mail-exist");
@@ -21,9 +20,6 @@ usernameMmessageerreur.style.display="none"
 usernameMmessageerreur.style.textAlign="left"
 
 
-selectMessageerreur.style.color="red"
-selectMessageerreur.style.display="none"
-selectMessageerreur.style.textAlign="left"
 
 
 emailMessageerreur.style.color="red"
@@ -43,7 +39,7 @@ mailExist.style.display="none";
 
 
 signupForm.addEventListener('submit',(e)=>{
-      
+      console.log("ok");
       if(!passwordRegex.test(signupForm.pasword.value)){
         passwordSignupfeld.style.border="2px solid red"
         passwordmessageerreur.style.display="block"
@@ -53,9 +49,7 @@ signupForm.addEventListener('submit',(e)=>{
         emailSignupfeld.style.border="2px solid red"
         emailMessageerreur.style.display="block"
         e.preventDefault()
-
        }
-       
        if(!usernameRegex.test(signupForm.username.value)){
         usernameSignupfeld.style.border="2px solid red"
         usernameMmessageerreur.style.display="block"

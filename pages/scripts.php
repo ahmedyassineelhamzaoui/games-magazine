@@ -67,7 +67,6 @@ function update(){
     $image=$_FILES["image"]["tmp_name"];
     $verify="SELECT Picture FROM product WHERE Id='$id' ";
     $result=mysqli_query($Connexion,$verify);
-    $number=mysqli_num_rows($result);
 
         if(empty($filename)){
             $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Description='$description' where Id='$id' ";
@@ -75,17 +74,13 @@ function update(){
             $_SESSION["updateProduct"]="product has been updated successfully !";
             header('location:./dashboard.php');
          }else{
-            if($number!=0){
-                
-            }else{
+
                 $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Picture='$filename' , Description='$description' where Id='$id' ";
                 mysqli_query($Connexion,$sql);
                 move_uploaded_file($image,'../img/'.$filename);
                 $_SESSION["updateProduct"]="product has been updated successfully !";
                 header('location:./dashboard.php');
             }
-           
-         }
     }
     
         

@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
              <h2 class="section-style-title">Already have an account ?</h2>
              <a href="Signin.php"><button class="section-submit" type="submit">Sign In</button></a>
              </div>
-             <img class="picture-undraw-signup" src="../pictures/undraw.svg" alt="undraw">
+             <img class="picture-undraw-signup" src="../pictures/consoles.svg" alt="console">
         </section>
     </main>
 <script src="../assets/script1.js"></script>

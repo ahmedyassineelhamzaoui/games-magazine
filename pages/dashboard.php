@@ -6,22 +6,24 @@ include '../config/head.php';
 if ($_SESSION["sucess"] != "oui") {
     header('location:Signin.php');
 } 
-    $_SESSION["authorize"]="yes";
-    $Querynumbreproduct = "SELECT * From product";
-    $result = mysqli_query($Connexion, $Querynumbreproduct);
+    $result = mysqli_query($Connexion, "SELECT * From product");
     $num = mysqli_num_rows($result);
-    $resultAmount = mysqli_query($Connexion, 'SELECT SUM(Amount) AS sumvalue FROM product');
-    $row = mysqli_fetch_assoc($resultAmount);
+    
+    $queryAmount = mysqli_query($Connexion, 'SELECT SUM(Amount) AS sumvalue FROM product');
+    $row = mysqli_fetch_assoc($queryAmount);
     $amountSum = $row['sumvalue'];
     
-    $resultPrice = mysqli_query($Connexion, 'SELECT SUM(Price) AS sumvalue FROM product');
-    $row1 = mysqli_fetch_assoc($resultPrice);
+    $queryPrice = mysqli_query($Connexion, 'SELECT SUM(Price) AS sumvalue FROM product');
+    $row1 = mysqli_fetch_assoc($queryPrice);
     $pricesum =  $row1['sumvalue'];
-    $ids=$_SESSION["Id"];
-    $sessionsql ="SELECT * From moderator WHERE Id='$ids' ";
-    $rsults=mysqli_query($Connexion,$sessionsql);
-    $rowss=mysqli_fetch_assoc($rsults);
 
+    $ids=$_SESSION["Id"];
+    $connectClient=mysqli_query($Connexion,"SELECT * From moderator WHERE Id='$ids' ");
+    $rowss=mysqli_fetch_assoc($connectClient);
+    
+    $instockQuery=mysqli_query($Connexion,'SELECT * FROM product WHERE Amount > 0 ');
+    $instockCard = mysqli_num_rows($instockQuery);
+    
 ?>
 
 
@@ -134,8 +136,8 @@ if ($_SESSION["sucess"] != "oui") {
                         <div class="card">
                             <div class="card-body d-flex justify-content-evenly align-items-center">
                                 <div>
-                                    <h5 class="card-title">Best product</h5>
-                                    <p class="card-text">number</p>
+                                    <h5 class="card-title">In stock</h5>
+                                    <p class="card-text"><?= $instockCard ?></p>
                                 </div>
                                 <div>
                                     <i class="fs-3 fa-sharp fa-solid fa-circle-check"></i>
@@ -250,10 +252,12 @@ if ($_SESSION["sucess"] != "oui") {
                                         <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
                                         <td class="text-center"><input type="submit" class="btn more text-light" name="submit" value="more"></td>
                                     </form>
-                                    <td class="text-center"><?php if ($ligne["Amount"] > 0) echo '<input type="button" class="btn stock text-light" value="in stock">';
+                                    <td class="text-center">
+                                        <?php if ($ligne["Amount"] > 0) echo '<input type="button" class="btn stock text-light" value="in stock">';
                                         else {
                                             echo '<input type="button" class="btn empty  text-light" value="unavailable">';
-                                        } ?></td>
+                                        } ?>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>

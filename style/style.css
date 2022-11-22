@@ -498,8 +498,8 @@ header .home-login-img{
     .section-dashboard .dashboard-header .dashboard-menu{
       display: block;
     }
-    .dashboard-client p,img{
-        display: none;
+    .dashboard-client p,.userimage{
+        display: none ;
     }
     
     }

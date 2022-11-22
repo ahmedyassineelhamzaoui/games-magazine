@@ -72,10 +72,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                      <i class="fas fa-lock"></i>               
                      <input class="content-input" name="pasword" id="password" type="password" placeholder="Password">
                   </div>
-                  <!-- <div class="input-checkbox" >
-                     <input  name="checkbox" id="checkbox" type="checkbox" >
-                     <label for="checkbox">Remembre me</label>
-                  </div> -->
                   <button name="signupbutton" class="section-submit" type="submit">sign up</button>
                   <div class="section-signup-style-content">
                   <h2 class="section-style-title">Already have an account ?</h2>

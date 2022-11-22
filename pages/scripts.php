@@ -7,11 +7,11 @@ include '../config/connexion.php';
 if(isset($_POST["save"])){ addProduct();}
 else if(isset($_POST["update"])){ update();}
 else if(isset($_POST["delete"])){  delete();}
-
-
 else if(isset($_POST["updateprofile"])){ updateprofile();}
+
+
 else{
-  header('location:dashboard.php');
+  header('location:dashboard.php'); 
 }
 
 

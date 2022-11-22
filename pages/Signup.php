@@ -9,14 +9,15 @@ include '../config/head.php';
 }
 ?>
 <?php
- @$username=$_POST["username"]; 
- @$signupSelect=$_POST["signupSelect"];
- @$email=$_POST["email"];
- @$pasword=md5($_POST["pasword"]);
- @$click=$_POST["signupbutton"];
+
+
  $erreur="";
 
-if(isset($click)){    
+if($_SERVER["REQUEST_METHOD"]=="POST"){    
+   $username= htmlspecialchars($_POST["username"]);
+   $email=  htmlspecialchars($_POST["email"]) ;
+   $pasword=  htmlspecialchars(md5($_POST["pasword"]));
+
    $sql="SELECT * FROM moderator WHERE Username='$username' ";
    $result=mysqli_query($Connexion,$sql);
    $usercount=mysqli_num_rows($result);

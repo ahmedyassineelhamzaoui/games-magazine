@@ -1,9 +1,8 @@
 <?php
 session_start();
- if(@$_SESSION["authorize"]!="yes"){
-  header('location:dashboard.php');
- }
-
+if(!isset($_POST["submit"])){
+    header('location:dashboard.php');
+}
 include '../config/connexion.php';
 $title = "products";
 include '../config/head.php';
@@ -45,7 +44,7 @@ include '../config/head.php';
                             <!-- <input name="oldimage" type="hidden" > -->
                             <img  style="width:100px;height:100px;" <?= 'src=../img/' . $ligne['Picture'] . '' ?> alt="photo">
                         </div>
-                        <input name="image" type="file" accept=".jpg, .png" class="form-control" id="product-file" value="x.jpg" >
+                        <input name="image" type="file" accept=".jpg, .png" class="form-control" id="product-file"  >
                     </div>
                     <div class="form-group">
                         <label class="form-label">Price</label>

@@ -8,16 +8,19 @@ if(isset($_SESSION["Id"])){
 }
 ?>
 <?php
-  
+
+
+
   include '../config/connexion.php';
-  
- @$email=$_POST["email"];
- @$pasword=md5($_POST["pasword"]);
+ 
  $erreur="";
- if(isset($_POST["Signinbutton"])){    
+ if($_SERVER["REQUEST_METHOD"]=="POST"){    
+   $email=htmlspecialchars($_POST["email"]);
+   $pasword=htmlspecialchars(md5($_POST["pasword"]));
+
    $sql="SELECT * FROM moderator WHERE Email='$email' AND Password='$pasword'";
    $result=mysqli_query($Connexion,$sql);
-   $row=mysqli_fetch_assoc($result);//pour afficher le nom 
+   $row=mysqli_fetch_assoc($result);
    $Ncount=mysqli_num_rows($result);
    if(!empty($pasword) && !empty($email)){
    if($Ncount==0){

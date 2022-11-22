@@ -222,7 +222,7 @@ if ($_SESSION["sucess"] != "oui") {
                         <thead class="table-dark">
                             <tr>
                                 <th class="text-center" scope="col">Title</th>
-                                <th class="text-center" scope="col">Type</th>
+                                <th class="text-center" scope="col">Category</th>
                                 <th class="text-center" scope="col">Picture</th>
                                 <th class="text-center" scope="col">Price</th>
                                 <th class="text-center" scope="col">Amount</th>
@@ -248,7 +248,7 @@ if ($_SESSION["sucess"] != "oui") {
                                     <td class="text-center"><?php echo $ligne["Description"] ?></td>
                                     <form action="./show.php?id=<?php echo $ligne["Id"]; ?>" method="post">
                                         <input type="hidden" name="Id" value="<?php echo $ligne['Id'] ?>">
-                                        <td class="text-center"><input type="submit" class="btn more text-light" value="more"></td>
+                                        <td class="text-center"><input type="submit" class="btn more text-light" name="submit" value="more"></td>
                                     </form>
                                     <td class="text-center"><?php if ($ligne["Amount"] > 0) echo '<input type="button" class="btn stock text-light" value="in stock">';
                                         else {
@@ -295,7 +295,7 @@ if ($_SESSION["sucess"] != "oui") {
                             </div>
                             <p id="erreur-title">please select a valid title*</p>
                             <div class="mb-3">
-                                <label class="form-label">Type</label>
+                                <label class="form-label">category</label>
                                 <select name="selectproduct" class="form-control" id="product-type">
                                     <option value="1">Jeux vidéo</option>
                                     <option value="2">Pc gamer</option>

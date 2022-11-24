@@ -28,7 +28,7 @@ let inputSerch=document.querySelector("#input-search");
 let submitSearch=document.querySelector("#submit-search");
 submitSearch.disabled = true;
 
-inputSerch.addEventListener('keyup', e => {
+inputSerch.addEventListener('keyup', (e) => {
 
     if (e.target.value == "") {
         submitSearch.disabled = true;

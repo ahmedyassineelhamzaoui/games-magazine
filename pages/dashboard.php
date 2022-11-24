@@ -166,11 +166,13 @@ if ($_SESSION["sucess"] != "oui") {
                 $startlimit = ($page - 1) * $numberproductbypage;
                 $sql = "SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp LIMIT $startlimit,$numberproductbypage ";
                 $result = mysqli_query($Connexion, $sql);
-                @$productName=$_POST["product-search"];
-                $message;
+
+
+                // $message;
                 if(isset($_POST['search'])){
-                   
-                            $sql="SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp  WHERE Title='$productName' LIMIT $startlimit,$numberproductbypage ";
+                    $productName=$_POST["product-search"];
+
+                            $sql="SELECT * FROM product INNER JOIN typeproduct ON product.Type=typeproduct.idp  WHERE Title='$productName' ";
                             $result =mysqli_query($Connexion,$sql);
                             $numberProduct=mysqli_num_rows($result);
                             if($numberProduct==0){

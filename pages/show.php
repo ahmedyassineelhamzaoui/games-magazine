@@ -89,7 +89,7 @@ include '../config/head.php';
                                 erreurtitleForm.classList.remove("d-none")
                                 e.preventDefault()
                             } 
-                            if(!description.test(productDescription.value || productTitle.value.trim().length ===0)){
+                            if(!description.test(productDescription.value) || productTitle.value.trim().length ===0){
                                 productDescription.style.border="2px solid red"
                                 erreurdescriptionForm.classList.remove("d-none")
                                 e.preventDefault()

@@ -21,7 +21,6 @@ erreurDescription.style.display="none"
 erreurDescription.style.color="red"
 
 formProduct.addEventListener('submit',(e)=>{
-  console.log("od");
 
 let productTitle=document.querySelector("#product-title")
 let productFile=document.querySelector("#product-file")

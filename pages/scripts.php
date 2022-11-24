@@ -65,8 +65,7 @@ function update(){
     $description=$_POST["description"];
     $filename=$_FILES["image"]["name"];
     $image=$_FILES["image"]["tmp_name"];
-    $verify="SELECT Picture FROM product WHERE Id='$id' ";
-    $result=mysqli_query($Connexion,$verify);
+    
 
         if(empty($filename)){
             $sql="UPDATE product SET Title='$title', Type='$type' , Price='$price' , Amount='$amount' , Description='$description' where Id='$id' ";
